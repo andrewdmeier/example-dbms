@@ -1,0 +1,132 @@
+start of list of comprehensive sql 2011 + dialects for sql queries
+
+= value exprs
+
+== function app
+
+== case
+== cast
+== greatest, least
+
+== in list
+
+== quoted names
+
+== dates, intervals
+
+== lots more operators
+cover all of sql 2011 for prefix, postfix, bin ops
+
+== lots more functions
+cover all of sql 2011 for functions
+
+== weird syntax operators
+between
+extract
+etc.
+
+== aggregates
+array_agg, string concat agg
+sql 2011 agg functions
+distinct
+order by
+filter
+within group
+
+== windows
+several stages:
+very simple: aggs + partitions
++ non agg window functions
++ order by
++ implicit order by frame
++ simple explicit frames
++ non inline frames
++ all the rest
+
+== parameterized
+== strings
+escape
+collate
+
+== arrays
+== multisets
+== next value for
+
+== more complex typenames
+
+== todo: non scalar expressions
+
+list all the scalar expression syntax which isn't scalar expressions, e.g.:
+aggregates
+unnest
+windows
+non scalar subqueries
+multiset stuff? array stuff?
+
+= basic aggregates
+count, max, min, sum, avg
+add group by with columns only
+add having
+
+complex expressions in group by, mixing transform and aggregates
+
+
+
+= set quantifier in select
+
+= offset and fetch first
+
+
+
+= order by
+desc
+nulls first/last
+indexed columns
+complex expressions
+
+= schemas
+= views
+
+= non natural inner join
+
+= other tref stuff
+implicit join
+cross join
+aliases
+parens
+subquery
+function
+multiple joins and associativity
+
+= outer join
+
+
+= correlation names
+
+= grouping sets
+
+= set ops
+basic union, intersect, except
+add corresponding
+parsing order by
+associativity
+
+= non recursive cte
+= recursive cte
+
+= values, table
+
+= subqueries
+
+= correlated subqueries
+
+= lateral
+
+
+= combining scalar context syntax
+normal map functions
+unnest
+aggregates
+windows
+correlated subquery references (what are these called?)
+other subqueries

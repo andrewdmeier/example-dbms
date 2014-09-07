@@ -1,0 +1,22 @@
+Simple implementation of an SQL DBMS in Haskell.
+
+Status: barely started.
+
+Goals:
+
+Demonstrate the basics of an SQL DBMS, including:
+
+* implementation of a wide range of queries
+* network server
+* statement compiler
+* statement runtime
+* a basic architecture for a DBMS
+* command line client
+* simple implementation of 'ACID'
+* features of a DBMS
+
+The major focus will be on understanding SQL queries in depth.
+
+Homepage: https://github.com/JakeWheat/zakhar/
+
+Author: Jake Wheat (jakewheatmail@gmail.com)

@@ -1,0 +1,252 @@
+
+Sketch milestones
+
+Two major goals: basic overview of what an SQL dbms is, plus explain a
+large amount of SQL queries by way of a simple implementation
+
+= Milestone one: simple sketch
+
+This is to get the basic infrastructure set up.
+
+support select lists and simple table refs only
+the only data type is integer
+the only function is +
+create an sql parser, and query engine
+  support insert, update, delete + create and drop table with multiple
+  columns
+create a network server + client
+create a query correctness test framework which also runs sql against
+  sqlite and compares the results, data generation
+this server does simple acid
+interactive command line client
+
+= Milestone two: really simple SQL
+
+Extend the queries to something slightly less trivial
+
+the milestone one plus
+create and drop database + connect to database syntax
+where
+subquery tableref
+
+== scalar types
+bool
+smallint, int, bigint
+real, float
+decimal
+text
+no nulls
+no date/time
+
+== scalar functions, operators
+
+and, or, not
+>, <, =, <=, <>, >=, between (only for 1-tuples)
+
++, -, *, /
+
+strings:
+||, length, substring
+no regex, like, etc.
+
+== casts between all types
+
+e.g.
+cast(a as int)
+
+== other scalar syntax
+
+case
+identifiers (no quoting)
+a.b quantified identifiers
+number literal
+string literal with just '' no escaping
+*, a.*
+parens
+
+== queries
+
+select _select_list_
+[_from_
+ [_where_]
+ [_group by_]
+ [_having_]
+ [_order by_]]
+
+_from_ := from _table_ref_
+_table_ref :=
+  identifier
+  _table_ref_ natural inner join _table_ref_
+  (_table_ref)
+
+_where_ := where scalar_expr
+_group_by_ = group by identifier[,identifier,...]
+having := having scalar_expr
+order by = order by identifier[,identifier,...]
+
+TODO: where, group by, having, order by deferred to next milestone
+
+== non query dml
+
+insert into TABLE_NAME [(column list)] values (csv of literals) [,(csv of literals)]
+delete from TABLE_NAME [where scalar_expr]
+update TABLE_NAME
+  set column_name = scalar_expr
+  [,set column_name = scalar_expr,...]
+  [ where scalar_expr]
+
+== ddl
+
+create table TABLE_NAME (
+       col_name col_type [,col_name col_type, ...]
+);
+all columns are not null
+no constraints
+no defaults
+no sequences/identity
+
+drop table TABLE_NAME[,TABLE_NAME,...]
+
+create database DATABASE_NAME
+drop database DATABASE_NAME
+
+== catalog
+
+cat_databases (database_name text);
+cat_all_tables (database_name text, table_name text);
+cat_tables (table_name text);
+cat_all_columns (database_name text, table_name text, column_name text, column_type_name text);
+cat_columns (table_name text, column_name text, column_type_name text);
+
+the server exe can be used to create a cluster
+the cluster has a small config file for the port
+
+every cluster has a master database which is read only, this can be
+used to connect and run create or drop database.
+
+= Milestone three: slightly more SQL queries
+
+This makes a much more complete relational query language
+
+add:
+natural inner join
+aggregates: min, max, avg, sum, count
+simple group by (single columns only)
+simple order by (single columns only)
+
+= milestone four: constraints
+
+This will produce a 'real toy' dbms
+
+some more tests
+better catalog?
+constraints:
+  primary key
+  unique
+  check
+  assertions
+  nulls + not null constraint
+
+= extensibility
+
+basic extensibility to add types, functions, ops, aggs, casts in
+Haskell and in SQL. This should make the code a bit more separated.
+
+= Future milestones
+
+produce introductory tutorial which will start from the beginning and
+build to the milestone four/extensible dbms.
+
+improve test framework: correctness, performance, stability, anomaly,
+  concurrency
+  anomaly (bad syntax, bad types, unsupported sql, bad concurrent
+    access, disk issues?, normal shutdown recovery, crash recovery)
+  more component testing
+profiling and coverage
+better value representation
+alter table
+switch to either for all errors
+better catalog
+ddl as catalog dml sugar?
+backup and restore
+improve ddl, dml:
+  defaults, sequences, views, truncate?
+  insert from query
+extensibility in types, functions
+udt, udf
+better concurrency/ basic mvcc
+query optimisation, cbo, explain
+storage options: columnar/row/hybrid, indexes, sorting, partitions,
+  mvcc
+more 'objects':
+  triggers
+  domains
+  ... ?
+session vars + other config
+typechecker + error messages
+work towards fuller range of ansi sql query support
+work towards supporting other dialects of sql queries
+savepoints
+cursors
+temp tables, procedural sql
+table valued functions
+prepared statements
+parameterized statements
+tablespaces
+execute
+listen/notify
+cross language network protocol
+upgrades/versioning
+review of query and statement support compared with standard, dialects
+
+topics:
+meaning of sql queries
+meaning of other sql syntax
+query optimisation
+storage optimisation/representation
+engine representation
+what is a dbms
+testing
+code optimisation?
+parser, typechecker, error messages
+relational algebra, calculus
+dialects (interesting ones are: postgresql, db2, oracle, sql server)
+  tier 2: mysql, firebird, ingres, teradata, netezza, other analytic,?
+implementing the compiler
+nulls
+syntax weirdness
+column names
+multiple rows
+meaning of scalar syntax expressions, select lists, data flow in sql
+  query syntax
+reliability
+performance
+understand a bit about acid
+understand a large subset of sql2011 queries
+understand some issues with sql syntax and semantics, and
+  implementations
+database design/predicates/interpretation
+extensibility
+abstraction
+lack of storage abstraction
+lack of query engine abstraction
+updateable views
+physical operators
+columnar/row based
+compression
+durability
+codd's rules/variations
+architecture of the system
+implementing a parser + flexibility + error messages
+interactive/non interactive transactions
+client database library design
+values and variables, tuples, relations, databases
+select lists
+subqueries
+comprehensive summary of sql queries
+non-deterministic expressions
+implicit casting
+language design
+c2r, r2c?
+dialects and portability
+mathematical points about relational algebra
