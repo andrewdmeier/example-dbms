@@ -3,7 +3,7 @@ Contains the simple sql syntax, parser and pretty printer
 
 > {-# LANGUAGE DeriveDataTypeable #-}
 
-> module SQL where
+> module Database.ExampleDBMS.SQL.SQL where
 
 > data QueryExpr = Select [(ValueExpr, Maybe String)] String
 >                  deriving (Eq,Show,Read,Data,Typeable)

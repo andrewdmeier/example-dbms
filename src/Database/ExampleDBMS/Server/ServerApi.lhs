@@ -1,7 +1,7 @@
 
 This is the server side api for working with the dbms.
 
-> module ServerApi where
+> module Database.ExampleDBMS.Server.ServerApi where
 
 creates the disk structure for a set of database managed by a single
 dbms server

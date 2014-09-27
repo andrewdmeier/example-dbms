@@ -1,10 +1,10 @@
 
 Wrapper for the network access. This is used in client applications.
 
-> module ClientApi where
+> module Database.ExampleDBMS.Network.ClientApi where
 
-> import Network
-> import Protocol
+> import Database.ExampleDBMS.Network.Network
+> import Database.ExampleDBMS.Network.Protocol
 > import System.IO
 > import qualified Data.ByteString as B
 > import qualified Data.ByteString.Lazy as BL
@@ -28,7 +28,7 @@ Wrapper for the network access. This is used in client applications.
 
 > errorMessage :: String -> Message -> a
 > errorMessage _ (Error s) = error s
-> errorMessage m x = error $ show i ++ " unexpected server response, waiting for: " ++ m ++ ", got: " ++ show x
+> errorMessage m x = error $ " unexpected server response, waiting for: " ++ m ++ ", got: " ++ show x
 
 
 > readMessage :: Handle -> IO Message
@@ -93,13 +93,13 @@ not sure which of these need to be in IO
 this can be used to tell if the prepared statement is a command or
 query and thus what the next steps are for the client.
 
-> statementType :: StatementHandle -> IO ClientApi.StatementType
+> statementType :: StatementHandle -> IO Database.ExampleDBMS.Network.ClientApi.StatementType
 > statementType (StatementHandle (ConnectionHandle h)) = do
 >   m <- exchange h $ GetStatementType
 >   case m of
 >     StatementTypeIs s -> return $ case s of
->       Protocol.Command -> ClientApi.Command
->       Protocol.Query cs -> ClientApi.Query cs
+>       Database.ExampleDBMS.Network.Protocol.Command -> Database.ExampleDBMS.Network.ClientApi.Command
+>       Database.ExampleDBMS.Network.Protocol.Query cs -> Database.ExampleDBMS.Network.ClientApi.Query cs
 >     _ -> errorMessage "getstatementtype" m
 
 This starts a query running, or completely executes a command

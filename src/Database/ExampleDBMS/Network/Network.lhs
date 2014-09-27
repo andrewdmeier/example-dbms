@@ -1,7 +1,7 @@
 
 simple network client and server code wrapper
 
-> module Network where
+> module Database.ExampleDBMS.Network.Network where
 
 > import Network.Socket
 > import Network.BSD

@@ -2,7 +2,7 @@
 Scratch code developing the testing and stuff
 
 > {-# LANGUAGE ScopedTypeVariables, DeriveDataTypeable #-}
-> module TableValues where
+> module Database.ExampleDBMS.Values.TableValues where
 
 > import Data.Char (isSpace)
 > import Data.List.Split (splitOn)

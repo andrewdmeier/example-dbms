@@ -1,0 +1,88 @@
+src/Database/ExampleDBMS/
+
+contains the library code: this is for the server as well as the
+client since you can't have two libraries in one cabal. This can be
+fixed later by creating multiple cabal projects
+
+src/Database/ExampleDBMS/
+
+src/Database/ExampleDBMS/Network/
+
+contains the network utility code, the client api, the network
+protocol and the network server code
+
+src/Database/ExampleDBMS/Server/
+
+contains the server itself which is independent of the network code
+wrapper. This deals with managing connections/sessions and tracking
+active statements. The api for this server, the network protocol, and
+the client lib closely track each other.
+
+src/Database/ExampleDBMS/Values
+
+contains the code for dealing with values, including the type
+definitions
+
+src/Database/ExampleDBMS/PhysOpSyntax
+
+This contains the abstract syntax for the physical operators, a
+parser, a pretty printer, typechecker and rewrites (desugar, optimise)
+for physical operator trees
+
+src/Database/ExampleDBMS/PhysOpImpl
+
+This contains the evaluator for the physical operators and the
+functions which implement the physical operators on top of the values.
+
+src/Database/ExampleDBMS/PhysOpImpl/Csv
+
+This contains utils for convering between csv concrete syntax and
+values.
+
+src/Database/ExampleDBMS/Storage
+
+This contains the code which implements the storage engine, which also
+implements a large part of the transaction management.
+
+src/Database/ExampleDBMS/DataGen
+
+This contains code to help generating data. One of the uses for this
+is for implementing tests.
+
+
+src/Database/ExampleDBMS/Utils
+
+This contains various utils including the pretty printer which
+converts values into ascii tables.
+
+src/Database/ExampleDBMS/SQL
+
+This contains the abstract syntax, pretty printer, parser,
+typechecker, and tree transforms for the SQL
+
+src/Database/ExampleDBMS/SQLToPhyOps
+
+Contains the conversion between SQL and physical operators.
+
+client/
+
+contains the code for the command line client executable
+
+tests/
+
+contains the code for the tests plus the test runner executable
+
+tests/Database/ExampleDBMS/Tests/TestTypes.lhs
+
+contains the declarative types for describing the tests
+
+tests/Database/ExampleDBMS/Tests/TestEval.lhs
+
+contains the code which converts TestType values into test cases,
+currently using test-framework-hunit.
+
+server/
+
+contains the thin wrapper code to run the network server as an
+executable
+

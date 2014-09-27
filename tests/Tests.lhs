@@ -3,7 +3,7 @@ Simple code to check that the client and server can talk to each
 other. This will develop into the acceptance tests and the command
 line client.
 
-> import ClientApi
+> import Database.ExampleDBMS.Network.ClientApi
 > import Control.Monad (when)
 
 > main :: IO ()

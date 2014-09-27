@@ -1,7 +1,9 @@
 
-This is the network server executable
+This is the network server library
 
-> import Network
+> module Database.ExampleDBMS.Network.Server (runServer) where
+
+> import Database.ExampleDBMS.Network.Network
 > import Network.Socket (withSocketsDo)
 > --import Network.BSD
 > import Control.Exception (finally)
@@ -13,17 +15,9 @@ This is the network server executable
 > import qualified Data.ByteString as B
 > import qualified Data.ByteString.Lazy as BL
 > import Data.Binary
-> import Protocol as P
+> import Database.ExampleDBMS.Network.Protocol as P
 > import System.Environment
-> import ServerApi as S
-
-> main :: IO ()
-> main = do
->     x <- getArgs
->     case x of
->       ["create_cluster",f] -> createCluster f
->       [f] -> runServer f
->       _ -> error $ "unrecognised args: " ++ show x
+> import Database.ExampleDBMS.Server.ServerApi as S
 
 > runServer :: FilePath -> IO ()
 > runServer clusterPath = do

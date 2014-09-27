@@ -2,7 +2,7 @@
 The network protocol messages definitions
 
 > {-# LANGUAGE DeriveDataTypeable,TemplateHaskell #-}
-> module Protocol where
+> module Database.ExampleDBMS.Network.Protocol where
 
 > import Data.Binary
 > --import GHC.Generics (Generic)
