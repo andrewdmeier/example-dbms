@@ -247,7 +247,8 @@ physops tests
 sql -> physops
 
 > sqlToPhysOp :: PhysOp -> QueryExpr
-> sqlToPhysOp (Select es f Nothing) = PSelect es (Relvar r)
+> sqlToPhysOp _ = undefined
+> -- sqlToPhysOp (Select es f Nothing) = PSelect es (Relvar r)
 
 ---------
 

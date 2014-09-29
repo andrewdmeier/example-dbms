@@ -6,6 +6,8 @@ line client.
 > import Database.ExampleDBMS.Network.ClientApi
 > import Control.Monad (when)
 
+> import Database.ExampleDBMS.Values.TableValues
+
 > main :: IO ()
 > main = do
 >   putStrLn "connecting"

@@ -4,6 +4,17 @@ Sketch milestones
 Two major goals: basic overview of what an SQL dbms is, plus explain a
 large amount of SQL queries by way of a simple implementation
 
+Immediate goals: somehow get a simple sql dbms working with
+concurrency, transactions, simple range of statement support and a
+bunch of tests. Try to refactor and document it nicely for
+documentation.
+
+Then work backwards to find the simplest possible dbms example, and
+then build a tutorial around this which builds up the the previous
+dbms.
+
+The can start adding support for a lot more queries.
+
 = Milestone one: simple sketch
 
 This is to get the basic infrastructure set up.
@@ -19,6 +30,31 @@ create a query correctness test framework which also runs sql against
   sqlite and compares the results, data generation
 this server does simple acid
 interactive command line client
+
+
+------------------------------------------
+
+add the tests in tablevalues to the automated testing
+
+refactor the Test.lhs to add some simple actual test cases + a simple
+runner
+
+start working through tablevalues and refactoring bits out
+
+datagen
+csv stuff
+pretty table
+sqlite running: split out + separate out creation of sqlite database +
+running statements
+physops syntax
+physops interpreter
+sql syntax
+conversion sql->physops
+
+do some code coverage
+
+
+------------------------------------------
 
 = Milestone two: really simple SQL
 
